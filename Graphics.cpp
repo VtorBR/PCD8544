@@ -311,42 +311,6 @@ namespace PCD8544
 				case '\r':
 					x = 0;
 					break;
-				case '\b':
-					if (glyphSize <= x)
-					{
-						x -= glyphSize;
-					}
-					else
-					{
-						x = 0;
-						if (0 > --line)
-						{
-							line = (Display::Height / 8) - 1;
-						}
-					}
-					break;
-				case '\t':
-					x += 2 * glyphSize;
-					if (Display::Width <= x + glyphSize)
-					{
-						if (Display::Height / 8 <= ++line)
-						{
-							line = 0;
-						}
-						x = 0;
-					}
-					break;
-				case '\v':
-					line += 2;
-					if (Display::Height / 8 <= line)
-					{
-						line = 0;
-					}
-					break;
-				case '\f':
-					x = 0;
-					line = 0;
-					break;
 				}
 			}
 		}
