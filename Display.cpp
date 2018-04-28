@@ -36,6 +36,12 @@ namespace PCD8544
 			}
 		}
 
+		void SetByte(const std::size_t index, const std::uint8_t value)
+		{
+			assert(index < buffer.size());
+			buffer[index] = value;
+		}
+
 		void Refresh()
 		{
 			Driver::Execute(Driver::Instruction::SetYAddress);
