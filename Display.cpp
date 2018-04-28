@@ -42,6 +42,11 @@ namespace PCD8544
 			buffer[index] = value;
 		}
 
+		void SetBuffer(const FrameBuffer & value)
+		{
+			buffer = value;
+		}
+
 		void Refresh()
 		{
 			Driver::Execute(Driver::Instruction::SetYAddress);
