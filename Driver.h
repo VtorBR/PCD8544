@@ -24,6 +24,12 @@ namespace PCD8544
 				constexpr std::uint8_t BiasSystem = 0x10;
 				constexpr std::uint8_t SetVop = 0x80;
 			}
-		};
+		}
+
+		namespace InstructionSet
+		{
+			constexpr std::uint8_t Basic = 0x0;
+			constexpr std::uint8_t Extended = 0x1;
+		}
 	}
 }
