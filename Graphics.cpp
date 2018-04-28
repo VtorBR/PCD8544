@@ -285,5 +285,67 @@ namespace PCD8544
 				Display::SetByte(line * Display::Width + x + i, glyph[i]);
 			}
 		}
+
+		void Write(std::uint8_t line, std::uint8_t x, const std::string & text)
+		{
+			assert(Display::Width > x);
+
+			for (const char character : text)
+			{
+				switch (character)
+				{
+				default:
+				{
+					DrawGlyph(line, x, static_cast<std::uint8_t>(character));
+					x += glyphSize;
+					if (Display::Width > x + glyphSize)
+					{
+						break;
+					}
+				}
+				case '\n':
+					if (Display::Height / 8 <= ++line)
+					{
+						line = 0;
+					}
+				case '\r':
+					x = 0;
+					break;
+				case '\b':
+					x -= glyphSize;
+					if (0 > x)
+					{
+						x = Display::Width - glyphSize;
+						if (0 > --line)
+						{
+							line = (Display::Height / 8) - 1;
+						}
+					}
+					break;
+				case '\t':
+					x += 2 * glyphSize;
+					if (Display::Width <= x + glyphSize)
+					{
+						if (Display::Height / 8 <= ++line)
+						{
+							line = 0;
+						}
+						x = 0;
+					}
+					break;
+				case '\v':
+					line += 2;
+					if (Display::Height / 8 <= line)
+					{
+						line = 0;
+					}
+					break;
+				case '\f':
+					x = 0;
+					line = 0;
+					break;
+				}
+			}
+		}
 	}
 }
