@@ -39,5 +39,11 @@ namespace PCD8544
 			constexpr std::uint8_t Normal = 0b100;
 			constexpr std::uint8_t Inverse = 0b101;
 		}
+
+		namespace MemoryAddressing
+		{
+			constexpr std::uint8_t Horizontal = 0b00;
+			constexpr std::uint8_t Vertical = 0b10;
+		}
 	}
 }
