@@ -29,5 +29,34 @@ namespace PCD8544
 			std::this_thread::sleep_for(std::chrono::milliseconds(100));
 			digitalWrite(RES, HIGH);
 		}
+
+		void WriteByte(const std::uint8_t data);
+
+		void Execute(const std::uint8_t instruction)
+		{
+			digitalWrite(DC, LOW);
+			WriteByte(instruction);
+		}
+
+		void WriteData(const std::uint8_t data)
+		{
+			digitalWrite(DC, HIGH);
+			WriteByte(data);
+		}
+
+		void WriteByte(const std::uint8_t data)
+		{
+			std::uint8_t bitMask = 0b10000000;
+			while (0 != bitMask)
+			{
+				digitalWrite(SDIN, !!(data & bitMask));
+
+				digitalWrite(SCLK, HIGH);
+				std::this_thread::sleep_for(std::chrono::microseconds(25));
+				digitalWrite(SCLK, LOW);
+
+				bitMask >>= 1;
+			}
+		}
 	}
 }
