@@ -312,10 +312,13 @@ namespace PCD8544
 					x = 0;
 					break;
 				case '\b':
-					x -= glyphSize;
-					if (0 > x)
+					if (glyphSize <= x)
 					{
-						x = Display::Width - glyphSize;
+						x -= glyphSize;
+					}
+					else
+					{
+						x = 0;
 						if (0 > --line)
 						{
 							line = (Display::Height / 8) - 1;
