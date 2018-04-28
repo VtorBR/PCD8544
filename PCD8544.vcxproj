@@ -113,6 +113,7 @@
   <ItemGroup>
     <ClInclude Include="Display.h" />
     <ClInclude Include="Driver.h" />
+    <ClInclude Include="Graphics.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Display.cpp" />
