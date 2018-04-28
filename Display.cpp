@@ -21,6 +21,21 @@ namespace PCD8544
 			Driver::Execute(Driver::Instruction::DisplayControl | Driver::DisplayConfiguration::Normal);
 		}
 
+		void SetPixel(const std::size_t x, const std::size_t y, const bool value)
+		{
+			assert(Width > x);
+			assert(Height > y);
+
+			if (value)
+			{
+				buffer[(y / 8) * Width + x] |= 1 << (y % 8);
+			}
+			else
+			{
+				buffer[(y / 8) * Width + x] &= !(1 << (y % 8));
+			}
+		}
+
 		void Refresh()
 		{
 			Driver::Execute(Driver::Instruction::SetYAddress);
