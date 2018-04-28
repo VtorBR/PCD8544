@@ -31,5 +31,13 @@ namespace PCD8544
 			constexpr std::uint8_t Basic = 0x0;
 			constexpr std::uint8_t Extended = 0x1;
 		}
+
+		namespace DisplayConfiguration
+		{
+			constexpr std::uint8_t Blank = 0b000;
+			constexpr std::uint8_t AllOn = 0b001;
+			constexpr std::uint8_t Normal = 0b100;
+			constexpr std::uint8_t Inverse = 0b101;
+		}
 	}
 }
