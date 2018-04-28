@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Display.h" />
     <ClInclude Include="Driver.h" />
   </ItemGroup>
   <ItemGroup>
